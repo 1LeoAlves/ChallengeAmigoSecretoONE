@@ -3,7 +3,8 @@
 let AmigosArray = new Array();
 let inputName = document.getElementById('amigo');
 let listaAmigos = document.querySelector('.name-list');
-let resultado = document.querySelector('.result-list');
+let resultadoLabel = document.querySelector('.result-list');
+let sortearButton = document.querySelector('.button-draw');
 
 function AdicionarAmigo(){
     if(inputName.value.length === 0){
@@ -29,5 +30,6 @@ function AtualizarVisualizacao(){
 }
 
 function SortearAmigo(){
-    
+    let result = Math.floor(Math.random() * AmigosArray.length)
+    resultadoLabel.innerHTML = AmigosArray[result];
 }
