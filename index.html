@@ -25,7 +25,10 @@
             </div>
            
             <ul id="listaAmigos" class="name-list" aria-labelledby="listaAmigos" role="list"></ul>
-            <ul id="resultado" class="result-list" aria-live="polite"></ul>
+            <div class="result-wrapper" style="visibility: hidden;">
+                <button onclick="CloseModal()" type="button">X</button>
+                <ul id="resultado" class="result-list" aria-live="polite"></ul>
+            </div>
 
             <div class="button-container">
                 <button class="button-draw" onclick="SortearAmigo()" aria-label="Sortear amigo secreto">

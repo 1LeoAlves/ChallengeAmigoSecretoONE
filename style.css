@@ -160,3 +160,49 @@ ul {
 .button-draw:hover {
     background-color: var(--color-button-hover);
 }
+
+.result-wrapper{
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    animation: forwards;
+    background-color: white;
+    transform-origin: center;
+    position: absolute;
+    width: 25%;
+    height: 15%;
+    top: calc(50vh - 25%/2);
+    right: calc(50vw - 25%/2);
+    border-radius: 5px;
+    box-shadow: 3px 5px 8px #00000075;
+}
+
+#result-wrapper-active{
+    
+}   
+
+#result-wrapper-desactive{
+
+}
+
+.result-wrapper button{
+    align-self: flex-end;
+    color: white;
+    font-weight: 900;
+    padding: 2.5%;
+    border: 0;
+    background-color: rgb(255, 48, 48);
+    border-radius: 5px;
+}
+
+@keyframes bump{
+    0%{
+        transform: scale(0);
+    }
+    80%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
