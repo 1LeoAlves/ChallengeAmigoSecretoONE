@@ -46,7 +46,7 @@
 <h3 align="left">📋 Descrição do Projeto - Amigo Secreto</h3>
 
 <p align="justify"> 
-  Neste desafio, você desenvolveu uma aplicação que permite aos usuários inserir nomes de amigos em uma lista e, em seguida, realizar um sorteio aleatório para determinar quem é o "amigo secreto".
+  Neste desafio, foi-se desenvolvido uma aplicação que permite aos usuários inserir nomes de amigos em uma lista e, em seguida, realizar um sorteio aleatório para determinar quem é o "amigo secreto".
   A aplicação tem as seguintes funcionalidades:
 </p>
 
