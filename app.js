@@ -8,12 +8,16 @@ let sortearButton = document.querySelector('.button-draw');
 let adicionarButton = document.querySelector('.button-add');
 let resultWrapper = document.querySelector('.result-wrapper');
 inputName.addEventListener("input", () => CheckEmptyness());
+resultWrapper.addEventListener("click",()=>{
+    resultWrapper.style.visibility = "hidden";
+});
 
 function AdicionarAmigo(){
     if(FiltrarInput(inputName.value)){
         AmigosArray.push(inputName.value);
         inputName.value = "";
         AtualizarVisualizacao();
+        CheckEmptyness();
     }
     else{
         inputName.value = "";
@@ -22,16 +26,16 @@ function AdicionarAmigo(){
 
 function FiltrarInput(value){
     let regex = /^[a-zA-Z\s]+$/;
-    console.log(value.length);
-    if(value.length === 0){
+    let trimmedvalue = value.trim();
+    if(trimmedvalue.length === 0){
         alert('Campo Vázio! Por favor insira um nome.');
         return false;
     }
-    else if(!regex.test(value)){
+    else if(!regex.test(trimmedvalue)){
         alert('Nome inválido! Não use characteres especiais, emojis ou simbolos.');
         return false;
     }
-    else if(!AmigosArray.includes(value)){
+    else if(!AmigosArray.includes(trimmedvalue)){
         return true;
     }
     return true;
@@ -57,7 +61,7 @@ function SortearAmigo(){
 }
 
 function CloseModal(){
-    resultWrapper.style.visibility = "hidden";
+    
 }
 
 function OpenModal(){
