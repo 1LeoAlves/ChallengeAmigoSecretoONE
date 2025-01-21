@@ -5,19 +5,40 @@ let inputName = document.getElementById('amigo');
 let listaAmigos = document.querySelector('.name-list');
 let resultadoLabel = document.querySelector('.result-list');
 let sortearButton = document.querySelector('.button-draw');
+let adicionarButton = document.querySelector('.button-add');
+let resultWrapper = document.querySelector('.result-wrapper');
+inputName.addEventListener("input", () => CheckEmptyness());
+resultWrapper.addEventListener("click",()=>{
+    resultWrapper.style.visibility = "hidden";
+});
 
 function AdicionarAmigo(){
-    if(inputName.value.length === 0){
-        alert('Campo Vázio! Por favor insira um nome.');
-    }
-    else if(!AmigosArray.includes(inputName.value)){
+    if(FiltrarInput(inputName.value)){
         AmigosArray.push(inputName.value);
         inputName.value = "";
         AtualizarVisualizacao();
+        CheckEmptyness();
     }
     else{
-        alert();
+        inputName.value = "";
     }
+}
+
+function FiltrarInput(value){
+    let regex = /^[a-zA-Z\s]+$/;
+    let trimmedvalue = value.trim();
+    if(trimmedvalue.length === 0){
+        alert('Campo Vázio! Por favor insira um nome.');
+        return false;
+    }
+    else if(!regex.test(trimmedvalue)){
+        alert('Nome inválido! Não use characteres especiais, emojis ou simbolos.');
+        return false;
+    }
+    else if(!AmigosArray.includes(trimmedvalue)){
+        return true;
+    }
+    return true;
 }
 
 function AtualizarVisualizacao(){
@@ -30,6 +51,30 @@ function AtualizarVisualizacao(){
 }
 
 function SortearAmigo(){
+    if(AmigosArray.length <= 0){
+        alert('Adicione pelo menos um nome antes de sortear!');
+        return;
+    }
     let result = Math.floor(Math.random() * AmigosArray.length)
-    resultadoLabel.innerHTML = AmigosArray[result];
+    resultadoLabel.innerHTML = `O Amigo secreto sorteado é: ${AmigosArray[result]}`;
+    resultWrapper.style.visibility = "visible";
+}
+
+function CloseModal(){
+    
+}
+
+function OpenModal(){
+
+}
+
+function CheckEmptyness(){
+    if(inputName.value.length !== 0){
+        adicionarButton.style.backgroundColor = "#00830f"
+        adicionarButton.style.color = "white";
+    }
+    else{
+        adicionarButton.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-tertiary');
+        adicionarButton.style.color = getComputedStyle(document.documentElement).getPropertyValue('--color-text');
+    }
 }
