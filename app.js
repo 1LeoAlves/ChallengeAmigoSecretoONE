@@ -7,7 +7,7 @@ let resultadoLabel = document.querySelector('.result-list');
 let sortearButton = document.querySelector('.button-draw');
 let adicionarButton = document.querySelector('.button-add');
 let resultWrapper = document.querySelector('.result-wrapper');
-inputName.addEventListener("input", () => CheckEmptyness());
+inputName.addEventListener("input", () => CheckInputEmptyness());
 resultWrapper.addEventListener("click",()=>{
     resultWrapper.style.visibility = "hidden";
 });
@@ -17,11 +17,13 @@ function AdicionarAmigo(){
         AmigosArray.push(inputName.value);
         inputName.value = "";
         AtualizarVisualizacao();
-        CheckEmptyness();
+        CheckInputEmptyness();
     }
     else{
         inputName.value = "";
+        CheckInputEmptyness();
     }
+    CheckListLenght();
 }
 
 function FiltrarInput(value){
@@ -56,19 +58,19 @@ function SortearAmigo(){
         return;
     }
     let result = Math.floor(Math.random() * AmigosArray.length)
-    resultadoLabel.innerHTML = `O Amigo secreto sorteado é: ${AmigosArray[result]}`;
+    resultadoLabel.innerHTML = `O Amigo secreto sorteado foi: <b>${AmigosArray[result]}</b>`;
+    PlayAudioFX('assets/sound_fx/partyFX.mp3');
     resultWrapper.style.visibility = "visible";
 }
 
-function CloseModal(){
-    
+function PlayAudioFX(path){
+    let audio = new Audio();
+    audio.volume = 0.15;
+    audio.src = path;
+    audio.play();
 }
 
-function OpenModal(){
-
-}
-
-function CheckEmptyness(){
+function CheckInputEmptyness(){
     if(inputName.value.length !== 0){
         adicionarButton.style.backgroundColor = "#00830f"
         adicionarButton.style.color = "white";
@@ -76,5 +78,16 @@ function CheckEmptyness(){
     else{
         adicionarButton.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-tertiary');
         adicionarButton.style.color = getComputedStyle(document.documentElement).getPropertyValue('--color-text');
+    }
+}
+
+function CheckListLenght(){
+    if(AmigosArray.length > 0){
+        sortearButton.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-button');
+        sortearButton.style.color = getComputedStyle(document.documentElement).getPropertyValue('--color-white');
+    }
+    else{
+        sortearButton.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-tertiary');
+        sortearButton.style.color = getComputedStyle(document.documentElement).getPropertyValue("--color-text");
     }
 }
